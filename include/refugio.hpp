@@ -1,7 +1,7 @@
 #ifndef REFUGIO_HPP
 #define REFUGIO_HPP
 
-#include "EntidadGenerica.hpp"
+#include "entidadGenerica.hpp"
 #include "wrapperVector.hpp"
 #include <iostream>
 #include <string>
@@ -64,3 +64,5 @@ public:
      */
     bool consumeResource(const std::string& resource, float amount);
 };
+
+#endif // REFUGIO_HPP
