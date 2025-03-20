@@ -20,3 +20,5 @@ int main() {
     std::cout << "Sistema de control 'Refugio 33' iniciado correctamente" << std::endl;
     return 0;
 }
+......
+asddasdas
