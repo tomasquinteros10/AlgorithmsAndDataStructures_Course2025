@@ -4,7 +4,7 @@
 #ifndef PERSONAJES_HPP
 #define PERSOANJES_HPP
 
-class Personaje : public entidadGenerica.hpp
+class Personaje : public entidadGenerica
 
 
 #endif
