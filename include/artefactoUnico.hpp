@@ -7,17 +7,17 @@
 class ArtefactoUnico : public EntidadGenerica
 {
     private:
-     std::string* m_rarity;
-     std::string* m_type;
+     std::string m_rarity;
+     std::string m_type;
      float m_durability;
     public:
      void showInfo()
      {
         std::cout<<"Nombre :" << m_name << "\n" ;
         std::cout<<"Rareza :" << m_rarity << "\n" ;
-        std::cout<<"Nombre :" << m_type << "\n" ;
-        std::cout<<"Nombre :" << m_durability << "\n" ;
-
+        std::cout<<"Tipo :" << m_type << "\n" ;
+        std::cout<<"Durabilidad :" << m_durability << "\n" ;
+        
      }
 
      void doAction()
