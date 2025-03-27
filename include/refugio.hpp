@@ -17,9 +17,19 @@
  */
 class Refugio : public EntidadGenerica
 {
+    enum class Faccion
+    {
+        HERMANDAD_DE_ACERO, // Grupo militarizado que busca preservar la tecnologia. (Buenos)
+        ENCLAVE, // Restos del antiguo gobierno de EE.UU, con ideologia autoritaria. (Malos)
+        SUPERMUTANTES, //Criaturas mutantes que suelen ser hostiles. (Malos)
+        ASALTANTES,
+        CARAVANAS_COMERCIALES, // Grupos de mercaderes que viajan entre asentamientos. (Buenos)
+        LOCALES // Personas que viven en el refugio.
+    };
+
     struct Visitante {
         std::string nombre;
-        std::string faccion;
+        Faccion faccion;
     };
 private:
     float m_defense;                                          ///< Nivel de defensa del refugio
@@ -29,6 +39,11 @@ private:
     DoublyLinkedList<Visitante>* m_visitants;                  ///< Lista de visitantes registrados
 
     void printRecursive(DoublyListNode<Visitante>* mNode);
+
+    /**
+     * @brief Devuelve la faccion en formato de string para su impresion.
+     */
+    std::string faccionToString(Faccion faccion) const;
 
 public:
     /**
@@ -87,6 +102,8 @@ public:
      * @brief Busca si una facción ha visitado el refugio
      */
     bool hasFactionVisited(const std::string& faccion) const;
+
+
 };
 
 #endif // REFUGIO_HPP

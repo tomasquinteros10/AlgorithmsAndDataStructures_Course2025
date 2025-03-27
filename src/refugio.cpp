@@ -63,11 +63,25 @@ void Refugio::printRecursive(DoublyListNode<Visitante>* mNode)
         return;
     }
 
-    std::cout << "\t - " << mNode->data.nombre << " de la facción " << mNode->data.faccion << std::endl;
+    std::cout << "\t - " << mNode->data.nombre << " de la facción " << faccionToString(mNode->data.faccion)  << std::endl;
     printRecursive(mNode->next);
 }
 
 bool Refugio::hasFactionVisited(const std::string& faccion) const
 {
     throw std::runtime_error("Not implemented yet");
+}
+
+std::string Refugio::faccionToString(Faccion faccion) const
+{
+    switch (faccion)
+    {
+        case Faccion::LOCALES: return "Locales"; break;
+        case Faccion::CARAVANAS_COMERCIALES: return "Caravanas"; break;
+        case Faccion::ASALTANTES: return "Asaltantes"; break;
+        case Faccion::SUPERMUTANTES: return "Supermutantes"; break;
+        case Faccion::HERMANDAD_DE_ACERO: return "Hermandad de acero"; break;
+        case Faccion::ENCLAVE: return "Enclave"; break;
+        default: return "Desconocida"; break;
+    }
 }
