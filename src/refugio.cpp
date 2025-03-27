@@ -41,3 +41,21 @@ bool Refugio::consumeResource(const std::string& resource, float amount)
     throw std::runtime_error("Not implemented yet");
     return false;
 }
+
+void Refugio::registerVisitant(const std::string& nombre, const std::string& faccion)
+{
+    // if (!isSafeFaction(faccion)) {
+    throw std::runtime_error("Not implemented yet");
+    // }
+}
+
+void Refugio::showVisits() const
+{
+    std::cout << "📖 Registro de visitas al Refugio " << m_name << ":\n";
+    throw std::runtime_error("Not implemented yet");
+}
+
+bool Refugio::hasFactionVisited(const std::string& faccion) const
+{
+    throw std::runtime_error("Not implemented yet");
+}

@@ -63,6 +63,23 @@ public:
      * @return true si el consumo fue exitoso, false si no hay suficiente recurso
      */
     bool consumeResource(const std::string& resource, float amount);
+
+    /**
+     * @brief Registra un visitante en el refugio (nombre y facción)
+     * @param nombre Nombre del visitante
+     * @param faccion Facción del visitante
+     */
+    void registerVisitant(const std::string& nombre, const std::string& faccion);
+
+    /**
+     * @brief Muestra todos los visitantes registrados
+     */
+    void showVisits() const;
+
+    /**
+     * @brief Busca si una facción ha visitado el refugio
+     */
+    bool hasFactionVisited(const std::string& faccion) const;
 };
 
 #endif // REFUGIO_HPP

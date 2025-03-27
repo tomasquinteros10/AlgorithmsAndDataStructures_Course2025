@@ -40,12 +40,7 @@ public:
 
     ~LinkedList()
     {
-        while (head != nullptr)
-        {
-            ListNode<TData>* temp = head;
-            head = head->next;
-            delete temp;
-        }
+        throw std::runtime_error("Not implemented yet");
     }
 
     /**
@@ -54,6 +49,16 @@ public:
      * @param value Valor a insertar
      */
     void push_front(const TData& value)
+    {
+        throw std::runtime_error("Not implemented yet");
+    }
+
+    /**
+    * @brief Remueve un elemento de la lista dada su posición
+    *
+    * @param position Posición del elemento a remover
+    */
+    void remove_at(size_t position)
     {
         throw std::runtime_error("Not implemented yet");
     }
@@ -122,13 +127,7 @@ public:
      */
     void push_front(const TData& value)
     {
-        DoublyListNode<TData>* newNode = new DoublyListNode<TData>(value);
-        newNode->next = head;
-        if (head != nullptr)
-        {
-            head->prev = newNode;
-        }
-        head = newNode;
+        throw std::runtime_error("Not implemented yet");
     }
 
     /**
@@ -137,6 +136,26 @@ public:
      * @param value Valor a insertar
      */
     void push_back(const TData& value)
+    {
+        throw std::runtime_error("Not implemented yet");
+    }
+
+    /**
+    * @brief Remueve un elemento de la lista dada su posición
+    *
+    * @param position Posición del elemento a remover
+    */
+    void remove_at(size_t position)
+    {
+        throw std::runtime_error("Not implemented yet");
+    }
+
+    /**
+    * @brief Copia los elementos de otra lista
+    *
+    * @param other Lista de la cual copiar los elementos
+    */
+    void copy_list(const DoublyLinkedList& other)
     {
         throw std::runtime_error("Not implemented yet");
     }
