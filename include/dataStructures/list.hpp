@@ -64,6 +64,15 @@ public:
     }
 
     /**
+    * @brief Crea una lista nueva de n elementos a partir de una posición dada
+    *
+    */
+    ListNode<TData>* take(size_t startPosition, size_t nElements)
+    {
+        throw std::runtime_error("Not implemented yet");
+    }
+
+    /**
      * @brief Imprime todos los elementos de la lista
      */
     void print() const
