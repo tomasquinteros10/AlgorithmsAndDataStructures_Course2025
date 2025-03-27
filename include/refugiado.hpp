@@ -7,6 +7,8 @@
 
 #include "entidadGenerica.hpp"
 #include <string>
+#include <iostream>
+#include <algorithm>
 
 class Refugiado : public EntidadGenerica
 {
@@ -48,6 +50,12 @@ public:
      */
     void recoverHealth(int amount);
 
-}
+    /**
+     * @brief Método para buscar refugio
+     */
+    void findShelter();
+
+
+};
 
 #endif //REFUGIADO_HPP
