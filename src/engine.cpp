@@ -3,6 +3,7 @@
 void Engine::start(const PlayerInfo& player)
 {
     m_player = player;
+    m_randomGenerator = RandomEventGenerator();
     initResources();
     initEntities();
     interactiveConsole();
