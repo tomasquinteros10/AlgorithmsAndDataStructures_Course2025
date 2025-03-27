@@ -126,7 +126,22 @@ public:
 
     ~DoublyLinkedList()
     {
-        throw std::runtime_error("Not implemented yet");
+        while(head != nullptr)
+        {
+            auto temporalNode = head;
+            head = head->next;
+            delete temporalNode;
+        }
+    }
+
+    /**
+     * @brief Retorna el primer elemento de la lista
+     *
+     * @return Primer elemento de la lista
+     */
+    DoublyListNode<TData>* get_head() const
+    {
+        return head;
     }
 
     /**

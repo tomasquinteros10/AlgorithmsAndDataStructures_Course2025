@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 #include <utility>
-#include <vector>
+#include "list.hpp"
 
 /**
  * @class Refugio
@@ -17,11 +17,18 @@
  */
 class Refugio : public EntidadGenerica
 {
+    struct Visitante {
+        std::string nombre;
+        std::string faccion;
+    };
 private:
     float m_defense;                                          ///< Nivel de defensa del refugio
     float m_attack;                                           ///< Capacidad de ataque del refugio
     wrapperVector<std::string> m_refugees;                    ///< Lista de moradores dentro del refugio
     wrapperVector<std::pair<std::string, float>> m_resources; ///< Lista de recursos con su cantidad
+    DoublyLinkedList<Visitante>* m_visitants;                  ///< Lista de visitantes registrados
+
+    void printRecursive(DoublyListNode<Visitante>* mNode);
 
 public:
     /**
@@ -74,7 +81,7 @@ public:
     /**
      * @brief Muestra todos los visitantes registrados
      */
-    void showVisits() const;
+    void showVisits();
 
     /**
      * @brief Busca si una facción ha visitado el refugio
