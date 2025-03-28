@@ -151,7 +151,9 @@ public:
      */
     void push_front(const TData& value)
     {
-        throw std::runtime_error("Not implemented yet");
+        DoublyListNode<TData>* nuevo = new DoublyListNode<TData>(value);
+        nuevo->next = head;
+        head = nuevo;
     }
 
     /**
