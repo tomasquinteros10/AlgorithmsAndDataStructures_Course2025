@@ -33,7 +33,7 @@ private:
     {
         auto newCapacity = (m_capacity == 0) ? INIT_CAPACITY : m_capacity * 2;
 
-        auto newData = new TData[m_capacity];
+        auto newData = new TData[newCapacity];
 
         for (size_t i = 0; i < m_size; i++)
         {

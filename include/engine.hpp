@@ -1,10 +1,11 @@
 #ifndef ENGINE_HPP
 #define ENGINE_HPP
 
+#include "randomEventGenerator.hpp"
 #include <chrono>
 #include <iostream>
-#include <thread>
 #include <string_view>
+#include <thread>
 #include <unordered_map>
 
 #ifdef _WIN32
@@ -87,7 +88,8 @@ private:
      */
     void clearScreen();
 
-    PlayerInfo m_player; //< Información del jugador
+    PlayerInfo m_player;                    //< Información del jugador
+    RandomEventGenerator m_randomGenerator; //< Generador de eventos aleatorios
 };
 
 #endif // ENGINE_HPP
