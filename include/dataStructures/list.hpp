@@ -163,7 +163,27 @@ public:
      */
     void push_back(const TData& value)
     {
-        throw std::runtime_error("Not implemented yet");
+        DoublyListNode<TData>* nuevo = new DoublyListNode<TData>(value);
+        // nuevo->next = nullptr; No haria falta pq cuando se crea un DoublyListNode next y prev se inicilizan en nullptr
+
+        // Si la lista esta vacia
+        if (!head)
+        {
+            head = nuevo;
+        }
+        else
+        {
+            // Si la lista tiene elementos, recorrer hasta el ultimo nodo
+            DoublyListNode<TData>* temp = get_head();
+            while (temp->next != nullptr) // Buscamos el ultimo nodo
+            {
+                temp = temp->next;
+            }
+
+            // temp es el ultimo nodo, se conecta con el nuevo ultimo nodo
+            temp->next = nuevo;
+            nuevo->prev = temp; // El prev de nuevo apunta al antiguo ultimo nodo, osea temp
+        }
     }
 
     /**
