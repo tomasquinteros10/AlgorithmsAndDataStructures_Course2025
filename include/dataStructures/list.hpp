@@ -151,7 +151,7 @@ public:
      */
     void push_front(const TData& value)
     {
-        DoublyListNode<TData>* nuevo = new DoublyListNode<TData>(value);
+        auto nuevo = new DoublyListNode<TData>(value);
         nuevo->next = head;
         head = nuevo;
     }
@@ -163,7 +163,7 @@ public:
      */
     void push_back(const TData& value)
     {
-        DoublyListNode<TData>* nuevo = new DoublyListNode<TData>(value);
+        auto nuevo = new DoublyListNode<TData>(value);
         // nuevo->next = nullptr; No haria falta pq cuando se crea un DoublyListNode next y prev se inicilizan en nullptr
 
         // Si la lista esta vacia
@@ -174,7 +174,8 @@ public:
         else
         {
             // Si la lista tiene elementos, recorrer hasta el ultimo nodo
-            DoublyListNode<TData>* temp = get_head();
+            // DoublyListNode<TData>* temp = get_head();
+            auto temp = get_head();
             while (temp->next != nullptr) // Buscamos el ultimo nodo
             {
                 temp = temp->next;
@@ -203,7 +204,21 @@ public:
     */
     void copy_list(const DoublyLinkedList& other)
     {
-        throw std::runtime_error("Not implemented yet");
+        // PREGUNTAR: Borramos los nodos actuales?
+        while (head != nullptr)
+        {
+            auto temporalNode = head;
+            head = head->next;
+            delete temporalNode;
+        }
+
+        // Copiamos los nodos de la otra lista con push_bakc()
+        auto current = other.get_head();
+        while (current != nullptr)
+        {
+            push_back(current->data);
+            current = current->next;
+        }
     }
 
     /**
