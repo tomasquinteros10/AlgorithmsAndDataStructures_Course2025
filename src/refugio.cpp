@@ -74,9 +74,25 @@ void Refugio::printRecursive(DoublyListNode<Visitante>* mNode)
     printRecursive(mNode->next);
 }
 
-bool Refugio::hasFactionVisited(const std::string& faccion) const
+bool Refugio::hasFactionVisited(Faccion faccion) const
 {
-    throw std::runtime_error("Not implemented yet");
+    DoublyListNode<Visitante>* aux = m_visitants->get_head();
+
+    while (aux->data.faccion != faccion)
+    {
+        if (aux->next == nullptr) // Se llego al final de la lista de visitantes y no se encontro la faccion
+        {
+            std::cout << "No hay registro de que la facción " << faccionToString(faccion)
+                        << " haya visitado el refugio." << std::endl;
+            return false;
+        }
+
+        aux = aux->next;
+    }
+
+    std::cout << "La facción " << faccionToString(faccion)
+                << " si ha visitado el refugio." << std::endl;
+    return true;
 }
 
 std::string Refugio::faccionToString(Faccion faccion) const

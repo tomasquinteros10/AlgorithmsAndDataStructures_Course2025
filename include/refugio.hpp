@@ -101,7 +101,7 @@ public:
     /**
      * @brief Busca si una facción ha visitado el refugio
      */
-    bool hasFactionVisited(const std::string& faccion) const;
+    bool hasFactionVisited(const Faccion faccion) const;
 
     /**
      *
