@@ -194,7 +194,57 @@ public:
     */
     void remove_at(size_t position)
     {
-        throw std::runtime_error("Not implemented yet");
+        // Si la lista esta vacia no hay nada que eliminar
+        if (head == nullptr)
+        {
+            return;
+        }
+
+        // Caso que el nodo a eliminar sea el primero (nodo 0)
+        if (position == 0)
+        {
+            DoublyListNode<TData>* temp = head;
+            head = head->next;
+
+            // Si hay mas nodos despues del primero actualizamos el prev del nuevo head
+            if (head != nullptr)
+            {
+                head->prev = nullptr;
+            }
+
+            delete temp;
+            return;
+        }
+
+        // Para cualquier otra posicion recorremos la lista, hacemos un contador para llevar track de
+        // la posicion en la lista
+        DoublyListNode<TData>* current = head;
+        size_t current_position = 0;
+
+        while (current != nullptr && current_position < position)
+        {
+            current = current->next;
+            current_position++;
+        }
+
+        // Si current es nullptr quiere decir que la posicion especifica es mas grande que la lista,
+        // no se encuentra la posicion
+        if (current == nullptr) return;
+
+        // current es el nodo que queremos eliminar, conectamos sus
+        // nodos adyacentes
+        if (current->prev != nullptr)
+        {
+            current->prev->next = current->next;
+        }
+
+        if (current->next != nullptr)
+        {
+            current->next->prev = current->prev;
+        }
+
+        delete current;
+
     }
 
     /**
