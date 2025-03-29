@@ -91,7 +91,7 @@ public:
      * @param nombre Nombre del visitante
      * @param faccion Facción del visitante
      */
-    void registerVisitant(const std::string& nombre, const std::string& faccion);
+    void registerVisitant(const std::string& nombre, Faccion faccion);
 
     /**
      * @brief Muestra todos los visitantes registrados
@@ -102,6 +102,13 @@ public:
      * @brief Busca si una facción ha visitado el refugio
      */
     bool hasFactionVisited(const std::string& faccion) const;
+
+    /**
+     *
+     * @param faccion Faccion a verificar si es segura.
+     * @return Booleano si es segura o no.
+     */
+    bool Refugio::isSafeFaction(const Faccion faccion) const;
 
 
 };

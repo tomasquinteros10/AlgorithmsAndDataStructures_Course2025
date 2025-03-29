@@ -42,11 +42,18 @@ bool Refugio::consumeResource(const std::string& resource, float amount)
     return false;
 }
 
-void Refugio::registerVisitant(const std::string& nombre, const std::string& faccion)
+void Refugio::registerVisitant(const std::string& nombre, const Faccion faccion)
 {
-    // if (!isSafeFaction(faccion)) {
-    throw std::runtime_error("Not implemented yet");
-    // }
+    if (!isSafeFaction(faccion)) {
+        std::cout << "Acceso denegado: La facción " << faccionToString(faccion)
+                    << " no es segura para el refugio." << std::endl;
+        return;
+    }
+
+    Visitante nuevoVisitante{nombre, faccion};
+    m_visitants->push_front(nuevoVisitante);
+    std::cout << "Visitante: " << nombre << " registrado existosamente en el refugio." << std::endl;
+
 }
 
 void Refugio::showVisits()
@@ -85,3 +92,11 @@ std::string Refugio::faccionToString(Faccion faccion) const
         default: return "Desconocida"; break;
     }
 }
+
+bool Refugio::isSafeFaction(const Faccion faccion) const
+{
+    return !(faccion == Faccion::ENCLAVE ||
+             faccion == Faccion::SUPERMUTANTES ||
+             faccion == Faccion::ASALTANTES);
+}
+
