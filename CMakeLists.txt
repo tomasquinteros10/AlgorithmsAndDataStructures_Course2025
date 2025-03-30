@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
 project(SisRefugio33)
 
-include(CTest)
-
 # Establece el estándar de C++ a utilizar
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
@@ -33,11 +31,26 @@ add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
 if (ENABLE_TESTS)
     # Si ENABLE_TESTS está habilitado, añade el subdirectorio de pruebas
     message(STATUS "Habilitando pruebas unitarias")
-    
+
     find_package(GTest CONFIG REQUIRED)
+    include(CTest)
+    include(GoogleTest)
+    
+    set(TEST_SRC_DIR "${CMAKE_SOURCE_DIR}/tests")
+    set(UNIT_SRC_DIR "${TEST_SRC_DIR}/unit")
+
+    add_executable(unit_tests
+        ${UNIT_SRC_DIR}/wrapperVector_test.cpp
+    )
+
+    target_include_directories(unit_tests PRIVATE "${CMAKE_SOURCE_DIR}/include")
+    target_include_directories(unit_tests PRIVATE "${CMAKE_SOURCE_DIR}/include/dataStructures")
+    target_include_directories(unit_tests PRIVATE "${CMAKE_SOURCE_DIR}/include/characters")  
 
     enable_testing()
-    add_subdirectory(tests)
+
+    target_link_libraries(unit_tests PRIVATE GTest::gtest GTest::gtest_main GTest::gmock GTest::gmock)
+    gtest_discover_tests(unit_tests)
 else()
     message(STATUS "Pruebas unitarias deshabilitadas")
-endif()
+endif(ENABLE_TESTS)
