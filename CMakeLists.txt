@@ -14,6 +14,13 @@ add_executable(${CMAKE_PROJECT_NAME} ${SRC_FILES})
 # Establece el directorio de inclusión para los archivos de cabecera usando target_include_directories
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/include")
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/include/dataStructures")
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/include/characters")
+
+# Copia todos los archivos de la carpeta assets al directorio de ejecución
+add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    "${CMAKE_SOURCE_DIR}/assets" "$<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>/assets"
+)
 
 # Mensaje para indicar el inicio de la compilación
 message(STATUS "Compilando el proyecto ${CMAKE_PROJECT_NAME}")

@@ -1,15 +1,14 @@
 #include "refugio.hpp"
 
-Refugio::Refugio(const std::string& name, float defense, float attack)
+Refugio::Refugio(const std::string& name, const std::string& leader)
     : EntidadGenerica(name)
-    , m_defense(defense)
-    , m_attack(attack)
+    , m_leader(leader)
 {
 }
 
 void Refugio::showInfo() const
 {
-    std::cout << "🏠 Refugio: " << m_name << "\n";
+    std::cout << "🏠 Refugio: " << m_name << "\t A cargo de: " << m_leader << "\n";
     std::cout << "\t🛡️  Defensa: " << m_defense << "\n";
     std::cout << "\t⚔️  Ataque: " << m_attack << "\n";
     std::cout << "👥 Moradores: ";
@@ -42,18 +41,18 @@ bool Refugio::consumeResource(const std::string& resource, float amount)
     return false;
 }
 
-void Refugio::registerVisitant(const std::string& nombre, const Faccion faccion)
+void Refugio::registerVisitant(const std::string& nombre, const EngineData::Faction faccion)
 {
-    if (!isSafeFaction(faccion)) {
-        std::cout << "Acceso denegado: La facción " << faccionToString(faccion)
-                    << " no es segura para el refugio." << std::endl;
+    if (!isSafeFaction(faccion))
+    {
+//        std::cout << "Acceso denegado: La facción " << faccionToString(faccion) << " no es segura para el refugio."
+  //                << std::endl;
         return;
     }
 
-    Visitante nuevoVisitante{nombre, faccion};
+    Visitante nuevoVisitante {nombre, faccion};
     m_visitants->push_front(nuevoVisitante);
     std::cout << "Visitante: " << nombre << " registrado existosamente en el refugio." << std::endl;
-
 }
 
 void Refugio::showVisits()
@@ -69,50 +68,12 @@ void Refugio::printRecursive(DoublyListNode<Visitante>* mNode)
         std::cout << "Fin del registro!" << std::endl;
         return;
     }
-
-    std::cout << "\t - " << mNode->data.nombre << " de la facción " << faccionToString(mNode->data.faccion)  << std::endl;
-    printRecursive(mNode->next);
 }
 
-bool Refugio::hasFactionVisited(Faccion faccion) const
+
+bool Refugio::isSafeFaction(const EngineData::Faction faccion) const
 {
-    DoublyListNode<Visitante>* aux = m_visitants->get_head();
-
-    while (aux->data.faccion != faccion)
-    {
-        if (aux->next == nullptr) // Se llego al final de la lista de visitantes y no se encontro la faccion
-        {
-            std::cout << "No hay registro de que la facción " << faccionToString(faccion)
-                        << " haya visitado el refugio." << std::endl;
-            return false;
-        }
-
-        aux = aux->next;
-    }
-
-    std::cout << "La facción " << faccionToString(faccion)
-                << " si ha visitado el refugio." << std::endl;
-    return true;
+    return (faccion == EngineData::Faction::REFUGEES || faccion == EngineData::Faction::WATER_MERCHANTS ||
+            faccion == EngineData::Faction::MERCHANTS || faccion == EngineData::Faction::STEEL_BROTHERS ||
+            faccion == EngineData::Faction::CARAVAN);
 }
-
-std::string Refugio::faccionToString(Faccion faccion) const
-{
-    switch (faccion)
-    {
-        case Faccion::LOCALES: return "Locales"; break;
-        case Faccion::CARAVANAS_COMERCIALES: return "Caravanas"; break;
-        case Faccion::ASALTANTES: return "Asaltantes"; break;
-        case Faccion::SUPERMUTANTES: return "Supermutantes"; break;
-        case Faccion::HERMANDAD_DE_ACERO: return "Hermandad de acero"; break;
-        case Faccion::ENCLAVE: return "Enclave"; break;
-        default: return "Desconocida"; break;
-    }
-}
-
-bool Refugio::isSafeFaction(const Faccion faccion) const
-{
-    return !(faccion == Faccion::ENCLAVE ||
-             faccion == Faccion::SUPERMUTANTES ||
-             faccion == Faccion::ASALTANTES);
-}
-
