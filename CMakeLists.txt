@@ -30,11 +30,12 @@ add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
     "${CMAKE_SOURCE_DIR}/assets" "$<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>/assets"
 )
 
-find_package(GTest CONFIG REQUIRED)
-
 if (ENABLE_TESTS)
     # Si ENABLE_TESTS está habilitado, añade el subdirectorio de pruebas
     message(STATUS "Habilitando pruebas unitarias")
+    
+    find_package(GTest CONFIG REQUIRED)
+
     enable_testing()
     add_subdirectory(tests)
 else()

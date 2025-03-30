@@ -28,7 +28,6 @@ target_include_directories(sis_refugio_33_tests PRIVATE
 
 # Linkeo a GTest y sanitizadores
 target_link_libraries(sis_refugio_33_tests
-    PRIVATE
     debug gtestd
     debug gmockd
     debug gtest_maind
@@ -38,7 +37,3 @@ target_link_libraries(sis_refugio_33_tests
     optimized gtest_main
     optimized gmock_main
 )
-
-# Descubrir automáticamente los tests
-include(GoogleTest)
-gtest_discover_tests(sis_refugio_33_tests)
