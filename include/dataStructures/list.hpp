@@ -40,7 +40,12 @@ public:
 
     ~LinkedList()
     {
-        throw std::runtime_error("Not implemented yet");
+        while(head != nullptr)
+        {
+            auto temporalNode = head;
+            head = head->next;
+            delete temporalNode;
+        }
     }
 
     /**
@@ -50,7 +55,9 @@ public:
      */
     void push_front(const TData& value)
     {
-        throw std::runtime_error("Not implemented yet");
+        auto nuevo = new ListNode<TData>(value);
+        nuevo->next = head;
+        head = nuevo;
     }
 
     /**
@@ -60,7 +67,40 @@ public:
     */
     void remove_at(size_t position)
     {
-        throw std::runtime_error("Not implemented yet");
+        if (head == nullptr)
+        {
+            return;
+        }
+
+        if (position == 0)
+        {
+            auto temp = head;
+            head = head->next;
+            delete temp;
+            return;
+        }
+
+        // Para cualquier otra posicion necesitamos mantener un puntero al nodo anterior
+        auto prev = head;
+        auto current = head->next;
+        size_t current_position = 1;
+
+        // Avanzamos hasta encontrar la posicion o llegar al final de la lista
+        while (current != nullptr && current_position < position)
+        {
+            prev = current;
+            current = current->next;
+            current_position++;
+        }
+
+        // Si current es nullptr quiere decir que la posicion especifica es mas grande que la lista,
+        // no se encuentra la posicion
+        if (current == nullptr) return;
+
+        // Hacemos que el nodo anterior apunte al nodo siguiente actual
+        prev->next = current->next;
+
+        delete current;
     }
 
     /**
@@ -69,7 +109,45 @@ public:
     */
     ListNode<TData>* take(size_t startPosition, size_t nElements)
     {
-        throw std::runtime_error("Not implemented yet");
+        // Si la lista esta vacia retornamos nullptr
+        if (head == nullptr)
+        {
+            return nullptr;
+        }
+
+        // Buscamos el nodo de inicio
+        ListNode<TData>* current = head;
+        size_t current_position = 0;
+
+        // Avanzamos hasta la posicion de inicio
+        while (current != nullptr && current_position < startPosition)
+        {
+            current = current->next;
+            current_position++;
+        }
+
+        // Si current es nullptr, la posicion esta fuera de rango
+        if (current == nullptr) return nullptr;
+
+        // Creamos el primer nodo de la nueva lista
+        ListNode<TData>* new_head = new ListNode<TData>(current->data);
+        ListNode<TData>* new_current = new_head;
+
+        // Avanzamos al siguiente nodo en la lista original
+        current = current->next;
+
+        // Copiamos los siguientes mElements-1 nodos (ya copiamos 1)
+        for (size_t i = 1; i < nElements && current != nullptr; i++)
+        {
+            // Creamos un nuevo nodo con el valor actual
+            new_current->next = new ListNode<TData>(current->data);
+
+            // Avanzamos en ambas listas
+            new_current = new_current->next;
+            current = current->next;
+        }
+
+        return new_head;
     }
 
     /**
