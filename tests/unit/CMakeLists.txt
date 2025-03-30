@@ -8,10 +8,11 @@ set(CMAKE_CXX_FLAGS_DEBUG "-g --coverage -fsanitize=address,leak,undefined")
 
 # Ruta al código fuente principal
 set(TEST_SRC_DIR ${CMAKE_CURRENT_LIST_DIR}/../../src)
+set(UNIT_SRC_DIR ${CMAKE_CURRENT_LIST_DIR})
 
 file(GLOB UNIT_SRC_FILES
     ${UNIT_SRC_DIR}/*_test.cpp
-    )
+)
 
 # Ejecutable de prueba unitaria
 add_executable(sis_refugio_33_tests
