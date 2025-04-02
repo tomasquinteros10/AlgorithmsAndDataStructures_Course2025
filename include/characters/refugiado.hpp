@@ -29,7 +29,6 @@ public:
     Refugiado(const std::string& name, bool isFromVault = false)
         : EntidadGenerica(name)
         , m_maxHealth(isFromVault ? 80 : 100)
-        , m_health(m_maxHealth)  /** m_health se inicializa con la salud maxima*/
         , m_supplies(0)
         , m_isFromVault(isFromVault)
     {
