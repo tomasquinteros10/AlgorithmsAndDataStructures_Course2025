@@ -114,15 +114,25 @@ public:
      */
     TData& operator[](size_t index)
     {
+        if (index >= m_size) {
+            throw std::out_of_range("indice fuera de rango");
+        }
         return m_data[index];
     }
 
     /**
      * @brief: Obtener un elemento del vector
      */
+    /** el indice (index) debe ser menor que m_size()=cantidad de elementos para que acceda a cada elemento
+     */
     const TData& at(size_t index) const
     {
-        return m_data[index];
+        if (index >= m_size)
+          {
+            throw std::out_of_range("indice fuera de rango");
+
+          }
+          return m_data[index];
     }
 
     /**
@@ -141,16 +151,19 @@ public:
      */
     TData* begin()
     {
-        return m_data;
+        return m_size ? m_data:nullptr;
     }
-
+    /** si m_size=0, el vector está vacío y si m_size>0, m_data es la direccion del primer elemento del vector
+     */
     /**
      * @brief: Iterador básico (último elemento)
      */
     TData* end()
     {
-        return m_data + m_size;
+        return m_size ? (m_data + m_size) : nullptr;
     }
+    /** si m_size=0, el vector está vacío y si m_size>0, m_data +m_size es la direccion al ultimo elemento del vector
+     */
 };
 
 #endif // WRAPPERVECTOR_HPP
