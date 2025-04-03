@@ -12,7 +12,7 @@
 /**
  * @brief Muestra la información del grupo de saqueadores
  */
-void  Saqueador :: showInfo() const override
+void Saqueador :: showInfo() const override
 {
     std::cout << "💀 Saqueadores: " << m_name << "\n"
               << " - Estilo: " << estiloToString(m_estilo) << "\n"

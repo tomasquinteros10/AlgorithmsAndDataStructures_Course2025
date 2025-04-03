@@ -5,7 +5,7 @@
 #include <iostream>
 #include <random>
 
-        Ghoul ::  Ghoul(const std::string& nombre)
+        Ghoul :: Ghoul(const std::string& nombre)
         : EntidadGenerica(nombre)
         , m_cantidad(generarCantidad())
         , m_saludBase(generarSalud())

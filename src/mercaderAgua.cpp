@@ -5,7 +5,7 @@
 #include <iostream>
 
 MercaderAgua :: MercaderAgua (const std::string& nombre, int agua, double tasa, bool confiable): EntidadGenerica(nombre)
-    , m_unidadesAgua(agua), m_tasaCambio(tasa), m_esConfiable(confiable)
+    ,m_unidadesAgua(agua), m_tasaCambio(tasa), m_esConfiable(confiable)
 {
 }
 

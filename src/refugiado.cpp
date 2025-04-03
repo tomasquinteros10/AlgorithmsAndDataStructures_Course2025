@@ -14,7 +14,7 @@ Refugiado::Refugiado(const std::string& name, bool isFromVault)
 void Refugiado::showInfo() const
 {
     std::cout << "👤 Refugiado: " << m_name << "\n"
-              << " - Salud: " << m_health << "/" << m_maxHealth << "\n"
+              << " - Salud: " << m_health <<"/" << m_maxHealth << "\n"
               << " - Suministros: " << m_supplies << "\n"
               << " - Origen: " << (m_isFromVault ? "VAULT" : "Superficie") << "\n";
 }

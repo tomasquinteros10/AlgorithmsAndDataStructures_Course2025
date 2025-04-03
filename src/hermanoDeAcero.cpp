@@ -25,7 +25,7 @@ int HermanoAcero :: solicitarIngreso(int recursosDisponibles)
             if (recursosDisponibles >= m_consumoMinimo)
             {
                 m_enRefugio = true;
-                std::cout << "💬" << m_name << " >>> Por la tecnología, serviré a este refugio." << std::endl;
+                std::cout << "💬" << m_name <<" >>> Por la tecnología, serviré a este refugio." << std::endl;
                 return m_consumoMinimo;
             }
             else
